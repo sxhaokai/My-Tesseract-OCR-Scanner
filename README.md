@@ -2,16 +2,18 @@
 
 Tesseract-OCR-Scanner是基于Tesseract-OCR实现的数字自动识别。
 
+
 实现效果图
 
-####logcat 设置下
-<img src="/screenshot/logcat.png" width="280px"/> 
+#### 每打开app识别一次，结果看日志
+
+#### logcat 设置下
+<img src="/screenshot/logcat.png"/> 
 
 
-####把要识别的图片替换调 abc.png
-<img src="screenshot/scan_pic.png" width="280px"/>
+#### 把要识别的图片替换调 abc.png
+<img src="screenshot/scan_pic.png"/>
 
-###每打开app识别一次，结果看日志
 
 
 ## 实现说明
