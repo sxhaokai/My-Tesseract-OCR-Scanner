@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
@@ -30,6 +32,7 @@ import com.zl.tesseract.scanner.camera.CameraManager;
 import com.zl.tesseract.scanner.decode.CaptureActivityHandler;
 import com.zl.tesseract.scanner.decode.DecodeManager;
 import com.zl.tesseract.scanner.decode.InactivityTimer;
+import com.zl.tesseract.scanner.tess.TessEngine;
 import com.zl.tesseract.scanner.tess.TesseractCallback;
 import com.zl.tesseract.scanner.tess.TesseractThread;
 import com.zl.tesseract.scanner.utils.Tools;
@@ -88,6 +91,8 @@ public class ScannerActivity extends Activity implements Callback, Camera.Pictur
                 CameraManager.get().setFlashLight(isChecked);
             }
         });
+
+        Log.e("Tess", TessEngine.Generate().detectText(BitmapFactory.decodeResource(getResources(), R.mipmap.abc)));
     }
 
     public Rect getCropRect() {
@@ -105,8 +110,8 @@ public class ScannerActivity extends Activity implements Callback, Camera.Pictur
     @Override
     protected void onResume() {
         super.onResume();
-        CameraManager.init();
-        initCamera();
+//        CameraManager.init();
+//        initCamera();
     }
 
     private void initCamera() {
@@ -147,6 +152,7 @@ public class ScannerActivity extends Activity implements Callback, Camera.Pictur
         if (null != mInactivityTimer) {
             mInactivityTimer.shutdown();
         }
+        TessEngine.Generate().release();
         super.onDestroy();
     }
 
